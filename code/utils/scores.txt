@@ -1,0 +1,302 @@
+CLOSED SET: FirstRun & SecondRun = Training, ThirdRun = Testing
+Subjects with incomplete acquisitions were strictly excluded from both the training and testing phases.
+
+RF WALK-STAIRS:
+    accuracy                           0.93       456
+   macro avg       0.94      0.93      0.93       456
+weighted avg       0.94      0.93      0.93       456
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         92.76%         │
+│ Rank-2  │         96.49%         │
+│ Rank-3  │         97.81%         │
+│ Rank-4  │         98.03%         │
+│ Rank-5  │         98.68%         │
+│ Rank-10 │        100.00%         │
+╰─────────┴────────────────────────╯
+
+RF SLOPE:
+    accuracy                           0.75       228
+   macro avg       0.76      0.75      0.72       228
+weighted avg       0.76      0.75      0.72       228
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         74.56%         │
+│ Rank-2  │         89.47%         │
+│ Rank-3  │         90.35%         │
+│ Rank-4  │         92.11%         │
+│ Rank-5  │         93.86%         │
+│ Rank-10 │        100.00%         │
+╰─────────┴────────────────────────╯
+
+HGB WALK-STAIRS:
+    accuracy                           0.19       456
+   macro avg       0.21      0.19      0.17       456
+weighted avg       0.21      0.19      0.17       456
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         19.08%         │
+│ Rank-2  │         32.89%         │
+│ Rank-3  │         44.08%         │
+│ Rank-4  │         53.51%         │
+│ Rank-5  │         63.38%         │
+│ Rank-10 │         87.72%         │
+╰─────────┴────────────────────────╯
+
+HGB SLOPE:
+    accuracy                           0.46       228
+   macro avg       0.39      0.46      0.38       228
+weighted avg       0.39      0.46      0.38       228
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         45.61%         │
+│ Rank-2  │         54.39%         │
+│ Rank-3  │         64.91%         │
+│ Rank-4  │         68.42%         │
+│ Rank-5  │         73.68%         │
+│ Rank-10 │         85.96%         │
+╰─────────┴────────────────────────╯
+
+MLP WALK-STAIRS:
+    accuracy                           0.33       456
+   macro avg       0.35      0.33      0.31       456
+weighted avg       0.35      0.33      0.31       456
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         33.33%         │
+│ Rank-2  │         53.95%         │
+│ Rank-3  │         61.40%         │
+│ Rank-4  │         68.64%         │
+│ Rank-5  │         75.66%         │
+│ Rank-10 │         89.69%         │
+╰─────────┴────────────────────────╯
+
+MLP SLOPE:
+    accuracy                           0.59       228
+   macro avg       0.52      0.59      0.52       228
+weighted avg       0.52      0.59      0.52       228
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         58.77%         │
+│ Rank-2  │         71.93%         │
+│ Rank-3  │         77.19%         │
+│ Rank-4  │         82.46%         │
+│ Rank-5  │         83.33%         │
+│ Rank-10 │         90.35%         │
+╰─────────┴────────────────────────╯
+
+CNN WALK-STAIRS:
+    accuracy                           0.38       456
+   macro avg       0.44      0.38      0.39       456
+weighted avg       0.44      0.38      0.39       456
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         37.94%         │
+│ Rank-2  │         54.61%         │
+│ Rank-3  │         64.25%         │
+│ Rank-4  │         69.96%         │
+│ Rank-5  │         76.54%         │
+│ Rank-10 │         88.82%         │
+╰─────────┴────────────────────────╯
+
+CNN SLOPE:
+    accuracy                           0.57       228
+   macro avg       0.58      0.57      0.53       228
+weighted avg       0.58      0.57      0.53       228
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         57.02%         │
+│ Rank-2  │         74.56%         │
+│ Rank-3  │         80.70%         │
+│ Rank-4  │         84.21%         │
+│ Rank-5  │         86.84%         │
+│ Rank-10 │         95.61%         │
+╰─────────┴────────────────────────╯
+
+SVM WALK-STAIRS:
+    accuracy                           0.27       456
+   macro avg       0.33      0.27      0.27       456
+weighted avg       0.33      0.27      0.27       456
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         26.75%         │
+│ Rank-2  │         52.19%         │
+│ Rank-3  │         64.47%         │
+│ Rank-4  │         75.88%         │
+│ Rank-5  │         83.99%         │
+│ Rank-10 │         96.27%         │
+╰─────────┴────────────────────────╯
+
+SVM SLOPE:
+    accuracy                           0.81       228
+   macro avg       0.74      0.81      0.76       228
+weighted avg       0.74      0.81      0.76       228
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         81.58%         │
+│ Rank-2  │         85.09%         │
+│ Rank-3  │         85.96%         │
+│ Rank-4  │         89.47%         │
+│ Rank-5  │         92.98%         │
+│ Rank-10 │         96.49%         │
+╰─────────┴────────────────────────╯
+
+Siamese WALK-STAIRS:
+    accuracy                           0.12       456
+   macro avg       0.13      0.12      0.10       456
+weighted avg       0.13      0.12      0.10       456
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         11.84%         │
+│ Rank-2  │         22.59%         │
+│ Rank-3  │         36.40%         │
+│ Rank-4  │         47.37%         │
+│ Rank-5  │         53.95%         │
+│ Rank-10 │         77.63%         │
+╰─────────┴────────────────────────╯
+
+Siamese SLOPE:
+    accuracy                           0.65       228
+   macro avg       0.64      0.65      0.60       228
+weighted avg       0.64      0.65      0.60       228
+
+      Closed Set Metrics (CMC)      
+╭─────────┬────────────────────────╮
+│  Rank   │ Cumulative Match Score │
+├─────────┼────────────────────────┤
+│ Rank-1  │         64.91%         │
+│ Rank-2  │         76.32%         │
+│ Rank-3  │         78.07%         │
+│ Rank-4  │         78.07%         │
+│ Rank-5  │         80.70%         │
+│ Rank-10 │         94.74%         │
+╰─────────┴────────────────────────╯
+
+
+------------------------------------------------------------------------------------------------------------------
+
+
+OPEN SET:
+Incomplete subjects were strictly excluded from the training phase and used exclusively as unknown impostors during testing. 
+Depending on the evaluation scenario, the impostor pool consisted either solely of these incomplete subjects, 
+or of a combination of incomplete subjects and a held-out subset of valid subjects.
+
+
+RANDOM FOREST WALK-STAIRS:
+╭────────────────────────────────────────────────╮
+│ OPEN SET PROTOCOL: RANDOM FOREST (Walk/Stairs) │
+╰────────────────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Loading existing model: rf_walk_stairs_open_set.joblib...
+Testing on 180 Genuine Probes and 264 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 12.16% │
+│ Optimal Threshold (EER) │   0.18 │
+╰─────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Loading existing model: rf_walk_stairs_closed_set.joblib...
+Testing on 228 Genuine Probes and 120 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 16.27% │
+│ Optimal Threshold (EER) │   0.18 │
+╰─────────────────────────┴────────╯
+
+
+SVM SLOPE:
+╭────────────────────────────────╮
+│ OPEN SET PROTOCOL: SVM (Slope) │
+╰────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Loading existing model: svm_slope_open_set.joblib...
+Testing on 90 Genuine Probes and 132 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 21.16% │
+│ Optimal Threshold (EER) │   0.18 │
+╰─────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Loading existing model: svm_slope_closed_set.joblib...
+Testing on 114 Genuine Probes and 60 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 26.54% │
+│ Optimal Threshold (EER) │   0.17 │
+╰─────────────────────────┴────────╯
+
+
+HGB SLOPE:
+╭────────────────────────────────╮
+│ OPEN SET PROTOCOL: HGB (Slope) │
+╰────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Training model with saved/default parameters...
+Testing on 90 Genuine Probes and 132 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 31.09% │
+│ Optimal Threshold (EER) │   0.58 │
+╰─────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Using existing Closed-Set model for all valid subjects!
+Testing on 114 Genuine Probes and 60 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 66.23% │
+│ Optimal Threshold (EER) │   0.96 │
+╰─────────────────────────┴────────╯

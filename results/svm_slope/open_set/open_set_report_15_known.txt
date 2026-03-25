@@ -1,0 +1,34 @@
+========================================================
+         OPEN SET WATCHLIST REPORT: SVM Slope
+========================================================
+Mode: 15 Valid Subjects Subset
+Known Subjects in Gallery: 15
+Unknown Subjects (Impostors): 11
+Genuine Probe Attempts (TG): 90
+Impostor Probe Attempts (TI): 132
+
+--- MAIN METRICS ---
+EER (Equal Error Rate): 21.16%
+Optimal Threshold for EER: 0.18
+
+--- DETAILED THRESHOLD ANALYSIS (DIR, FAR, FRR) ---
+Note: FRR (False Reject Rate) = 100% - DIR
+
+Threshold    | DIR (Detect & ID)    | FAR (False Alarm)    | FRR (False Reject)  
+--------------------------------------------------------------------------------
+0.10         | 84.44             % | 99.24             % | 15.56             %
+0.20         | 68.89             % | 10.61             % | 31.11             %
+0.30         | 33.33             % | 2.27              % | 66.67             %
+0.40         | 7.78              % | 0.00              % | 92.22             %
+0.50         | 1.11              % | 0.00              % | 98.89             %
+0.60         | 0.00              % | 0.00              % | 100.00            %
+0.70         | 0.00              % | 0.00              % | 100.00            %
+0.80         | 0.00              % | 0.00              % | 100.00            %
+0.90         | 0.00              % | 0.00              % | 100.00            %
+--------------------------------------------------------------------------------
+0.18         | 78.89             % | 21.21             % | 21.11             % <-- EER POINT
+
+--- APPLICATION NEEDS (OPERATIONAL POINTS) ---
+- High Security (Max FAR 1.0%): Threshold >= 0.34  -->  DIR = 20.00%, FRR = 80.00%
+- High Security (Max FAR 5.0%): Threshold >= 0.23  -->  DIR = 62.22%, FRR = 37.78%
+- High Security (Max FAR 10.0%): Threshold >= 0.21  -->  DIR = 68.89%, FRR = 31.11%

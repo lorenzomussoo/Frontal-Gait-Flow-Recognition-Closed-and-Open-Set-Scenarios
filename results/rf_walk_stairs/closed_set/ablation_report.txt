@@ -1,0 +1,5 @@
+=== ABLATION STUDY REPORT ===
+
+Baseline (Video + IMU) Accuracy: 92.76%
+Video Only Accuracy: 25.88% (Difference: -66.89%)
+IMU Only Accuracy: 93.86% (Difference: 1.10%)
