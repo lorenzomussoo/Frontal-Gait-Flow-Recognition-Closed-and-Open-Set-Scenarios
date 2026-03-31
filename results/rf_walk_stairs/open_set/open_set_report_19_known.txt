@@ -8,27 +8,27 @@ Genuine Probe Attempts (TG): 228
 Impostor Probe Attempts (TI): 120
 
 --- MAIN METRICS ---
-EER (Equal Error Rate): 16.27%
-Optimal Threshold for EER: 0.18
+EER (Equal Error Rate): 14.71%
+Optimal Threshold for EER: 0.17
 
 --- DETAILED THRESHOLD ANALYSIS (DIR, FAR, FRR) ---
 Note: FRR (False Reject Rate) = 100% - DIR
 
 Threshold    | DIR (Detect & ID)    | FAR (False Alarm)    | FRR (False Reject)  
 --------------------------------------------------------------------------------
-0.10         | 92.54             % | 93.33             % | 7.46              %
-0.20         | 74.12             % | 5.83              % | 25.88             %
-0.30         | 49.12             % | 0.00              % | 50.88             %
-0.40         | 25.00             % | 0.00              % | 75.00             %
-0.50         | 9.21              % | 0.00              % | 90.79             %
+0.10         | 93.42             % | 93.33             % | 6.58              %
+0.20         | 76.75             % | 4.17              % | 23.25             %
+0.30         | 46.93             % | 0.00              % | 53.07             %
+0.40         | 20.61             % | 0.00              % | 79.39             %
+0.50         | 6.14              % | 0.00              % | 93.86             %
 0.60         | 3.51              % | 0.00              % | 96.49             %
 0.70         | 0.00              % | 0.00              % | 100.00            %
 0.80         | 0.00              % | 0.00              % | 100.00            %
 0.90         | 0.00              % | 0.00              % | 100.00            %
 --------------------------------------------------------------------------------
-0.18         | 82.46             % | 15.00             % | 17.54             % <-- EER POINT
+0.17         | 86.40             % | 15.83             % | 13.60             % <-- EER POINT
 
 --- APPLICATION NEEDS (OPERATIONAL POINTS) ---
-- High Security (Max FAR 1.0%): Threshold >= 0.23  -->  DIR = 66.67%, FRR = 33.33%
-- High Security (Max FAR 5.0%): Threshold >= 0.21  -->  DIR = 72.81%, FRR = 27.19%
-- High Security (Max FAR 10.0%): Threshold >= 0.19  -->  DIR = 79.82%, FRR = 20.18%
+- High Security (Max FAR 1.0%): Threshold >= 0.26  -->  DIR = 56.14%, FRR = 43.86%
+- High Security (Max FAR 5.0%): Threshold >= 0.18  -->  DIR = 82.46%, FRR = 17.54%
+- High Security (Max FAR 10.0%): Threshold >= 0.17  -->  DIR = 83.77%, FRR = 16.23%
