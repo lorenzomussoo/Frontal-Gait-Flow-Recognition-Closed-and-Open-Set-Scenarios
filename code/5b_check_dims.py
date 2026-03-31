@@ -17,7 +17,7 @@ IMU_FILES = [
 ]
 
 def check():
-    console.print("[bold magenta]--- Dimension Checker ---[/bold magenta]")
+    console.print("[bold magenta]--- Dimension Checker (Depth+RGB+IR+IMU) ---[/bold magenta]")
     
     test_file = None
     if os.path.exists(PROCESSED_ROOT):
@@ -57,11 +57,12 @@ def check():
     console.print(f"[bold]IMU Length:[/bold] {imu_len}")
     
     video_len_total = total_len - imu_len
-    single_modality_len = video_len_total // 2
+    
+    single_modality_len = video_len_total // 3
     
     console.print(f"\n[bold green]RESULT:[/bold green]")
-    console.print(f"Total ({total_len}) - IMU ({imu_len}) = [bold cyan]{video_len_total}[/bold cyan] (Depth + RGB combined)")
-    console.print(f"Dimension for single camera: {video_len_total} / 2 = [bold magenta]{single_modality_len}[/bold magenta]")
+    console.print(f"Total ({total_len}) - IMU ({imu_len}) = [bold cyan]{video_len_total}[/bold cyan] (Depth + RGB + IR combined)")
+    console.print(f"Dimension for single camera: {video_len_total} / 3 = [bold magenta]{single_modality_len}[/bold magenta]")
     
     if single_modality_len == 24576:
         console.print("\n[bold green]CONFIRMED: GLOBAL_VIDEO_LEN = 24576 is CORRECT![/bold green]")

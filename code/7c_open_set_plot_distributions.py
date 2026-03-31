@@ -14,7 +14,7 @@ console = Console()
 FEATURES_ROOT = "/Volumes/LaCie/GAIT 2/processed_features"
 MODEL_DIR = "models"
 
-VIDEO_CUT_INDEX = 49152
+VIDEO_CUT_INDEX = 73728
 NUM_KNOWN_SUBJECTS = 15
 SEED = 42
 USE_ALL_VALID_AS_KNOWN = False
@@ -35,11 +35,14 @@ def get_subject_pools(is_slope):
         for run_name in ["FirstRun", "SecondRun", "ThirdRun"]:
             run_dir = os.path.join(subj_path, run_name)
             w_c, st_c, sl_c = 0, 0, 0
-            for root, _, files in os.walk(run_dir):
-                if 'debug' in root: continue
-                if is_slope and "slope" not in root.lower(): continue
-                if not is_slope and "slope" in root.lower(): continue
-                for f in files:
+            for root, dirs, files in os.walk(run_dir):
+                dirs.sort()
+                root_lower = root.lower()
+                if 'debug' in root_lower or '_backup' in root_lower: continue
+                if is_slope and "slope" not in root_lower: continue
+                if not is_slope and "slope" in root_lower: continue
+                
+                for f in sorted(files): 
                     if f.endswith('.npy') and 'flip' not in f and not f.startswith('._'):
                         if is_slope:
                             sl_c += 1
@@ -70,13 +73,16 @@ def get_subject_pools(is_slope):
 
 def load_data(known_subs, unknown_subs, is_slope):
     X_gen, y_gen_str, X_imp = [], [], []
+    
     for subj in known_subs:
         subj_path = os.path.join(FEATURES_ROOT, subj)
-        for root, _, files in os.walk(subj_path):
-            if 'ThirdRun' in root and 'debug' not in root:
-                if is_slope and "slope" not in root.lower(): continue
-                if not is_slope and "slope" in root.lower(): continue
-                for f in files:
+        for root, dirs, files in os.walk(subj_path):
+            dirs.sort()
+            root_lower = root.lower()
+            if 'ThirdRun' in root and 'debug' not in root_lower and '_backup' not in root_lower:
+                if is_slope and "slope" not in root_lower: continue
+                if not is_slope and "slope" in root_lower: continue
+                for f in sorted(files):
                     if f.endswith('.npy') and not f.startswith('._') and 'flip' not in f:
                         try:
                             vec = np.load(os.path.join(root, f))
@@ -89,11 +95,13 @@ def load_data(known_subs, unknown_subs, is_slope):
 
     for subj in unknown_subs:
         subj_path = os.path.join(FEATURES_ROOT, subj)
-        for root, _, files in os.walk(subj_path):
-            if 'debug' not in root:
-                if is_slope and "slope" not in root.lower(): continue
-                if not is_slope and "slope" in root.lower(): continue
-                for f in files:
+        for root, dirs, files in os.walk(subj_path):
+            dirs.sort()
+            root_lower = root.lower()
+            if 'debug' not in root_lower and '_backup' not in root_lower:
+                if is_slope and "slope" not in root_lower: continue
+                if not is_slope and "slope" in root_lower: continue
+                for f in sorted(files):
                     if f.endswith('.npy') and not f.startswith('._') and 'flip' not in f:
                         try:
                             vec = np.load(os.path.join(root, f))

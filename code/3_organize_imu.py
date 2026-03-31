@@ -83,7 +83,7 @@ def process_imu_zip(zip_path, existing_subjects, progress):
                 
                 if len(parts) < 3: 
                     if valid_csv_count == 0:
-                        progress.console.print(f"[yellow]⚠️ Struttura zip anomala in {zip_name}: troppi pochi livelli ({filename_clean})[/yellow]")
+                        progress.console.print(f"[yellow]⚠️ Anomalous zip structure in {zip_name}: too few levels ({filename_clean})[/yellow]")
                     continue
 
                 valid_csv_count += 1
@@ -119,7 +119,7 @@ def process_imu_zip(zip_path, existing_subjects, progress):
                 match = re.search(r"([A-Za-z_ ]+?)\s*-\s*0*(\d+)$", action_raw)
                 if not match:
                     if show_debug:
-                        progress.console.print(f"[yellow]SKIP (Wrong Action):[/yellow] '{action_raw}' (di {zip_subject_raw}) -> La cartella non finisce con '-001', '-002' ecc.")
+                        progress.console.print(f"[yellow]SKIP (Wrong Action):[/yellow] '{action_raw}' (of {zip_subject_raw}) -> Folder does not end with '-001', '-002' etc.")
                     continue
                     
                 base_action = match.group(1).replace(" ", "_").lower()

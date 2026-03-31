@@ -47,9 +47,13 @@ def get_subject_pools():
         for run_name in ["FirstRun", "SecondRun", "ThirdRun"]:
             run_dir = os.path.join(subj_path, run_name)
             walk_count, stairs_count = 0, 0
-            for root, _, files in os.walk(run_dir):
-                if 'debug' in root or "slope" in root.lower(): continue
-                for f in files:
+            
+            for root, dirs, files in os.walk(run_dir):
+                dirs.sort()
+                root_lower = root.lower()
+                if 'debug' in root_lower or "slope" in root_lower or "_backup" in root_lower: continue
+                
+                for f in sorted(files):
                     if f.endswith('.npy') and 'flip' not in f and not f.startswith('._'):
                         f_lower = f.lower()
                         if 'walk' in f_lower: walk_count += 1
@@ -78,8 +82,11 @@ def load_data(known_subs, unknown_subs):
     
     for subj in known_subs:
         subj_path = os.path.join(FEATURES_ROOT, subj)
-        for root, _, files in os.walk(subj_path):
-            if 'debug' in root or "slope" in root.lower(): continue
+        for root, dirs, files in os.walk(subj_path):
+            dirs.sort() 
+            root_lower = root.lower()
+            if 'debug' in root_lower or "slope" in root_lower or "_backup" in root_lower: continue
+            
             for f in sorted(files):
                 if not f.endswith('.npy') or f.startswith('._') or 'flip' in f: continue
                 try: vec = np.load(os.path.join(root, f))
@@ -94,9 +101,12 @@ def load_data(known_subs, unknown_subs):
 
     for subj in unknown_subs:
         subj_path = os.path.join(FEATURES_ROOT, subj)
-        for root, _, files in os.walk(subj_path):
-            if 'debug' in root or "slope" in root.lower(): continue
-            for f in files:
+        for root, dirs, files in os.walk(subj_path):
+            dirs.sort()
+            root_lower = root.lower()
+            if 'debug' in root_lower or "slope" in root_lower or "_backup" in root_lower: continue
+            
+            for f in sorted(files):
                 if not f.endswith('.npy') or f.startswith('._') or 'flip' in f: continue
                 try: vec = np.load(os.path.join(root, f))
                 except: continue

@@ -25,10 +25,10 @@ os.makedirs(MODEL_DIR, exist_ok=True)
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 USE_ALL_VALID_AS_KNOWN = False
-PERFORM_GRID_SEARCH = False
+PERFORM_GRID_SEARCH = False 
 
 NUM_KNOWN_SUBJECTS = 15
-VIDEO_CUT_INDEX = 49152
+VIDEO_CUT_INDEX = 73728 
 SEED = 42
 np.random.seed(SEED)
 
@@ -48,9 +48,11 @@ def get_subject_pools():
         for run_name in ["FirstRun", "SecondRun", "ThirdRun"]:
             run_dir = os.path.join(subj_path, run_name)
             slope_count = 0
-            for root, _, files in os.walk(run_dir):
-                if 'debug' in root or "slope" not in root.lower(): continue
-                for f in files:
+            for root, dirs, files in os.walk(run_dir):
+                dirs.sort()
+                root_lower = root.lower()
+                if 'debug' in root_lower or "slope" not in root_lower: continue
+                for f in sorted(files):
                     if f.endswith('.npy') and 'flip' not in f and not f.startswith('._'):
                         slope_count += 1
             if slope_count < 6:
@@ -77,9 +79,11 @@ def load_data(known_subs, unknown_subs):
     
     for subj in known_subs:
         subj_path = os.path.join(FEATURES_ROOT, subj)
-        for root, _, files in os.walk(subj_path):
-            if 'debug' in root or "slope" not in root.lower(): continue
-            for f in files:
+        for root, dirs, files in os.walk(subj_path):
+            dirs.sort()
+            root_lower = root.lower()
+            if 'debug' in root_lower or "slope" not in root_lower: continue
+            for f in sorted(files):
                 if not f.endswith('.npy') or f.startswith('._') or 'flip' in f: continue
                 try: 
                     vec = np.load(os.path.join(root, f))
@@ -96,9 +100,11 @@ def load_data(known_subs, unknown_subs):
 
     for subj in unknown_subs:
         subj_path = os.path.join(FEATURES_ROOT, subj)
-        for root, _, files in os.walk(subj_path):
-            if 'debug' in root or "slope" not in root.lower(): continue
-            for f in files:
+        for root, dirs, files in os.walk(subj_path):
+            dirs.sort()
+            root_lower = root.lower()
+            if 'debug' in root_lower or "slope" not in root_lower: continue
+            for f in sorted(files):
                 if not f.endswith('.npy') or f.startswith('._') or 'flip' in f: continue
                 try: 
                     vec = np.load(os.path.join(root, f))
@@ -184,10 +190,10 @@ def main():
             
             clean_params = {}
             for k, v in search.best_params_.items():
-                if isinstance(v, PCA): 
+                if k == 'pca' and isinstance(v, PCA): 
                     clean_params['pca_status'] = 'active'
                     clean_params['pca__n_components'] = v.n_components
-                elif v == 'passthrough': 
+                elif k == 'pca' and v == 'passthrough': 
                     clean_params['pca_status'] = 'passthrough'
                 elif k != 'scaler': 
                     clean_params[k] = v

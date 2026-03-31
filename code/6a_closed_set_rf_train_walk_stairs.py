@@ -57,7 +57,7 @@ def load_data():
             walk_count, stairs_count = 0, 0
             
             for root, _, files in os.walk(run_dir):
-                if 'debug' in root or "slope" in root.lower(): continue
+                if 'debug' in root or "slope" in root.lower() or "_backup" in root.lower(): continue
                 for f in files:
                     if f.endswith('.npy') and 'flip' not in f and not f.startswith('._'):
                         f_lower = f.lower()
@@ -65,21 +65,23 @@ def load_data():
                         elif 'stairs' in f_lower or 'up' in f_lower or 'down' in f_lower: stairs_count += 1
             
             if walk_count < 6 or stairs_count < 6:
-                console.print(f"[yellow]Escluso {subj}: in {run_name} ha {walk_count} Walk e {stairs_count} Stairs (Richiesti 6 e 6).[/yellow]")
+                console.print(f"[yellow]Excluded {subj}: in {run_name} found {walk_count} Walk and {stairs_count} Stairs (Expected 6 and 6).[/yellow]")
                 is_complete = False
                 break
                 
         if is_complete:
             valid_subjects.append(subj)
 
-    console.print(f"[bold green]Soggetti perfetti ammessi al Closed Set: {len(valid_subjects)}[/bold green]")
+    console.print(f"[bold green]Valid subjects admitted to Closed Set: {len(valid_subjects)}[/bold green]")
 
     for subj in track(valid_subjects, description="Loading valid subjects..."): 
         subj_path = os.path.join(FEATURES_ROOT, subj)
-        for root, _, files in os.walk(subj_path):
-            if 'debug' in root or "slope" in root.lower(): continue
-            for f in files:
+        for root, dirs, files in os.walk(subj_path):
+            dirs.sort()
+            if 'debug' in root or "slope" in root.lower() or "_backup" in root.lower(): continue
+            for f in sorted(files):
                 if not f.endswith('.npy') or f.startswith('._'): continue
+                
                 file_path = os.path.join(root, f)
                 try: 
                     vector = np.load(file_path)
@@ -94,7 +96,14 @@ def load_data():
                     y_test_str.append(subj)
                     meta_test.append(f)
                     
-    return np.array(X_train), np.array(X_test), np.array(y_train_str), np.array(y_test_str), meta_test
+    X_train_np = np.array(X_train)
+    X_test_np = np.array(X_test)
+    
+    console.print(f"\n[bold cyan]Dataset loaded![/bold cyan]")
+    console.print(f"Training matrix shape: [bold magenta]{X_train_np.shape}[/bold magenta]")
+    console.print(f"Test matrix shape: [bold magenta]{X_test_np.shape}[/bold magenta]\n")
+                    
+    return X_train_np, X_test_np, np.array(y_train_str), np.array(y_test_str), meta_test
 
 def train_and_evaluate():
     data = load_data()
@@ -128,7 +137,7 @@ def train_and_evaluate():
             }
         ]
         
-        search = GridSearchCV(base_pipeline, param_grid, cv=3, n_jobs=-1, verbose=2)
+        search = GridSearchCV(base_pipeline, param_grid, cv=5, n_jobs=-1, verbose=2)
         search.fit(X_train, y_train)
         
         final_model = search.best_estimator_

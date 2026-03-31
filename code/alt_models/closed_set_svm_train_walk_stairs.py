@@ -23,19 +23,20 @@ console = Console()
 
 FEATURES_ROOT = "/Volumes/LaCie/GAIT 2/processed_features"
 MODEL_DIR = "models"
-RESULTS_DIR = "results/svm_slope/closed_set"
-MODEL_NAME = "svm_slope_closed_set.joblib" 
-PARAMS_FILE = os.path.join(MODEL_DIR, 'best_params_svm_slope_closed_set.json')
+RESULTS_DIR = "results/svm_walk_stairs/closed_set"
+MODEL_NAME = "svm_walk_stairs_closed_set.joblib"
+PARAMS_FILE = os.path.join(MODEL_DIR, 'best_params_svm_walk_stairs_closed_set.json')
 
-os.makedirs(MODEL_DIR, exist_ok=True)
-os.makedirs(RESULTS_DIR, exist_ok=True)
-
-VIDEO_CUT_INDEX = 73728 
-PERFORM_GRID_SEARCH = False 
+PERFORM_GRID_SEARCH = False
+SAVE_RESULTS = False
 SEED = 42
 
+if SAVE_RESULTS:
+    os.makedirs(MODEL_DIR, exist_ok=True)
+    os.makedirs(RESULTS_DIR, exist_ok=True)
+
 def load_data():
-    console.print(Panel.fit(f"[bold magenta]Loading SLOPE Dataset for SVM: {FEATURES_ROOT}[/bold magenta]"))
+    console.print(Panel.fit(f"[bold yellow]Loading Walk/Stairs Dataset for SVM: {FEATURES_ROOT}[/bold yellow]"))
     X_train, y_train_str, X_test, y_test_str, meta_test = [], [], [], [], []
     if not os.path.exists(FEATURES_ROOT): return None
 
@@ -48,59 +49,39 @@ def load_data():
     for subj in candidate_subjects:
         subj_path = os.path.join(FEATURES_ROOT, subj)
         is_complete = True
-        
         for run_name in ["FirstRun", "SecondRun", "ThirdRun"]:
             run_dir = os.path.join(subj_path, run_name)
-            slope_count = 0
-            
-            for root, _, files in os.walk(run_dir):
-                if 'debug' in root or "slope" not in root.lower(): continue
-                for f in files:
+            walk_count, stairs_count = 0, 0
+            for root, dirs, files in os.walk(run_dir):
+                dirs.sort()
+                root_lower = root.lower()
+                if 'debug' in root_lower or "slope" in root_lower or "_backup" in root_lower: continue
+                for f in sorted(files):
                     if f.endswith('.npy') and 'flip' not in f and not f.startswith('._'):
-                        slope_count += 1
-            if slope_count < 6:
-                console.print(f"[yellow]Excluded {subj}: in {run_name} found {slope_count} Slope files (Expected 12 with flips).[/yellow]")
-                is_complete = False
-                break
-                
+                        f_lower = f.lower()
+                        if 'walk' in f_lower: walk_count += 1
+                        elif 'stairs' in f_lower or 'up' in f_lower or 'down' in f_lower: stairs_count += 1
+            if walk_count < 6 or stairs_count < 6: is_complete = False; break
         if is_complete: valid_subjects.append(subj)
-
-    console.print(f"[bold green]Valid subjects admitted to Slope Closed Set: {len(valid_subjects)}[/bold green]")
 
     for subj in track(valid_subjects, description="Loading valid subjects..."): 
         subj_path = os.path.join(FEATURES_ROOT, subj)
         for root, dirs, files in os.walk(subj_path):
             dirs.sort()
-            if 'debug' in root or "slope" not in root.lower(): continue
+            root_lower = root.lower()
+            if 'debug' in root_lower or "slope" in root_lower or "_backup" in root_lower: continue
             for f in sorted(files):
                 if not f.endswith('.npy') or f.startswith('._'): continue
-                
                 file_path = os.path.join(root, f)
-                try: 
-                    vector = np.load(file_path)
-                    if len(vector) > VIDEO_CUT_INDEX: 
-                        imu_vector = vector[VIDEO_CUT_INDEX:]
-                    else: 
-                        continue
-                except: 
-                    continue
+                try: vector = np.load(file_path)
+                except: continue
                 
                 if 'FirstRun' in file_path or 'SecondRun' in file_path:
-                    X_train.append(imu_vector)
-                    y_train_str.append(subj)
+                    X_train.append(vector); y_train_str.append(subj)
                 elif 'ThirdRun' in file_path:
-                    X_test.append(imu_vector)
-                    y_test_str.append(subj)
-                    meta_test.append(f)
+                    X_test.append(vector); y_test_str.append(subj); meta_test.append(f)
                     
-    X_train_np = np.array(X_train)
-    X_test_np = np.array(X_test)
-    
-    console.print(f"\n[bold cyan]Dataset loaded![/bold cyan]")
-    console.print(f"Training matrix shape: [bold magenta]{X_train_np.shape}[/bold magenta]")
-    console.print(f"Test matrix shape: [bold magenta]{X_test_np.shape}[/bold magenta]\n")
-                    
-    return X_train_np, X_test_np, np.array(y_train_str), np.array(y_test_str), meta_test
+    return np.array(X_train), np.array(X_test), np.array(y_train_str), np.array(y_test_str), meta_test
 
 def train_and_evaluate():
     data = load_data()
@@ -121,19 +102,22 @@ def train_and_evaluate():
     ])
 
     if PERFORM_GRID_SEARCH:
-        param_grid = [{'scaler': [StandardScaler()], 'pca': ['passthrough', PCA(n_components=0.95)], 
-                       'svm__C': [0.1, 1.0, 10.0], 'svm__kernel': ['linear', 'rbf']}]
+        param_grid = [
+            {'scaler': [StandardScaler()], 'pca': ['passthrough', PCA(n_components=0.95)], 
+             'svm__C': [0.1, 1.0, 10.0], 'svm__kernel': ['linear', 'rbf']}
+        ]
         search = GridSearchCV(base_pipeline, param_grid, cv=3, n_jobs=-1, verbose=2)
         search.fit(X_train, y_train)
         final_model = search.best_estimator_
         
-        best_params_ser = {}
-        for k, v in search.best_params_.items():
-            if k == 'pca' and isinstance(v, PCA): best_params_ser['pca_status'] = 'active'; best_params_ser['pca__n_components'] = v.n_components
-            elif k == 'pca' and v == 'passthrough': best_params_ser['pca_status'] = 'passthrough'
-            elif k != 'scaler': best_params_ser[k] = v
-        with open(PARAMS_FILE, 'w') as f: json.dump(best_params_ser, f, indent=4)
-        dump(search, os.path.join(MODEL_DIR, MODEL_NAME))
+        if SAVE_RESULTS:
+            best_params_ser = {}
+            for k, v in search.best_params_.items():
+                if k == 'pca' and isinstance(v, PCA): best_params_ser['pca_status'] = 'active'; best_params_ser['pca__n_components'] = v.n_components
+                elif k == 'pca' and v == 'passthrough': best_params_ser['pca_status'] = 'passthrough'
+                elif k != 'scaler': best_params_ser[k] = v
+            with open(PARAMS_FILE, 'w') as f: json.dump(best_params_ser, f, indent=4)
+            dump(search, os.path.join(MODEL_DIR, MODEL_NAME))
     else:
         if os.path.exists(PARAMS_FILE):
             with open(PARAMS_FILE, 'r') as f: loaded_params = json.load(f)
@@ -142,7 +126,7 @@ def train_and_evaluate():
             svm_params = {k: v for k, v in loaded_params.items() if k.startswith('svm__')}
             base_pipeline.set_params(scaler=StandardScaler(), **svm_params)
         else:
-            base_pipeline.set_params(scaler=StandardScaler(), pca='passthrough', svm__C=1.0, svm__kernel='linear')
+            base_pipeline.set_params(scaler=StandardScaler(), pca=PCA(n_components=0.95), svm__C=1.0, svm__kernel='linear')
         base_pipeline.fit(X_train, y_train)
         final_model = base_pipeline
 
@@ -167,26 +151,27 @@ def train_and_evaluate():
         if k <= G: cmc_table.add_row(f"Rank-{k}", f"{cms[k-1]:.2f}%")
     console.print(cmc_table)
 
-    with open(os.path.join(RESULTS_DIR, "metrics_report.txt"), "w") as f:
-        f.write("=== FINAL REPORT: SVM (SLOPE) ===\n\n--- CLASSIFICATION REPORT ---\n")
-        f.write(report_text + "\n\n--- CUMULATIVE MATCH SCORE (CMS) ---\n")
-        for k in [1, 2, 3, 4, 5, 10]:
-            if k <= G: f.write(f"Rank-{k}: {cms[k-1]:.2f}%\n")
+    if SAVE_RESULTS:
+        with open(os.path.join(RESULTS_DIR, "metrics_report.txt"), "w") as f:
+            f.write("=== FINAL REPORT: SVM (WALK/STAIRS) ===\n\n--- CLASSIFICATION REPORT ---\n")
+            f.write(report_text + "\n\n--- CUMULATIVE MATCH SCORE (CMS) ---\n")
+            for k in [1, 2, 3, 4, 5, 10]:
+                if k <= G: f.write(f"Rank-{k}: {cms[k-1]:.2f}%\n")
 
-    plt.figure(figsize=(10, 6))
-    plt.plot(range(1, G + 1), cms, marker='s', linestyle='-', color='indigo', linewidth=2)
-    plt.title('Cumulative Match Characteristic (CMC) - SVM Slope')
-    plt.xlabel('Rank'); plt.ylabel('Recognition Rate (%)'); plt.grid(True, linestyle='--', alpha=0.7)
-    plt.xticks(np.arange(1, min(G + 1, 21), 1)); plt.ylim(0, 105); plt.axhline(y=100, color='r', linestyle='-', alpha=0.3)
-    plt.tight_layout(); plt.savefig(os.path.join(RESULTS_DIR, 'cmc_curve.png'), dpi=300); plt.close()
+        plt.figure(figsize=(10, 6))
+        plt.plot(range(1, G + 1), cms, marker='o', linestyle='-', color='indigo', linewidth=2)
+        plt.title('Cumulative Match Characteristic (CMC) - SVM Walk/Stairs')
+        plt.xlabel('Rank'); plt.ylabel('Recognition Rate (%)'); plt.grid(True, linestyle='--', alpha=0.7)
+        plt.xticks(np.arange(1, min(G + 1, 21), 1)); plt.ylim(0, 105); plt.axhline(y=100, color='r', linestyle='-', alpha=0.3)
+        plt.tight_layout(); plt.savefig(os.path.join(RESULTS_DIR, 'cmc_curve.png'), dpi=300); plt.close()
 
-    cm = confusion_matrix(y_test_str, y_pred_str_out, labels=classes)
-    plt.figure(figsize=(14, 12))
-    sns.heatmap(cm, annot=True, fmt='d', cmap='Purples', xticklabels=classes, yticklabels=classes)
-    plt.title('Confusion Matrix - SVM Slope')
-    plt.ylabel('True Identity (Probe)'); plt.xlabel('Predicted Identity (Gallery Match)')
-    plt.xticks(rotation=45, ha='right'); plt.tight_layout()
-    plt.savefig(os.path.join(RESULTS_DIR, 'confusion_matrix.png'), dpi=300); plt.close()
+        cm = confusion_matrix(y_test_str, y_pred_str_out, labels=classes)
+        plt.figure(figsize=(14, 12))
+        sns.heatmap(cm, annot=True, fmt='d', cmap='Purples', xticklabels=classes, yticklabels=classes)
+        plt.title('Confusion Matrix - SVM Walk/Stairs')
+        plt.ylabel('True Identity (Probe)'); plt.xlabel('Predicted Identity (Gallery Match)')
+        plt.xticks(rotation=45, ha='right'); plt.tight_layout()
+        plt.savefig(os.path.join(RESULTS_DIR, 'confusion_matrix.png'), dpi=300); plt.close()
 
 if __name__ == "__main__":
     train_and_evaluate()

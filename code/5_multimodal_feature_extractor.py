@@ -17,7 +17,8 @@ console = Console()
 
 DATASET_ROOT = "/Volumes/LaCie/GAIT 2/dataset"
 OUTPUT_ROOT = "/Volumes/LaCie/GAIT 2/processed_features"
-SKIP_EXISTING = True 
+
+SKIP_EXISTING = False 
 
 EXPECTED_RUNS = ["FirstRun", "SecondRun", "ThirdRun"]   
 
@@ -123,13 +124,13 @@ def extract_video_features(video_path, flip=False, save_dir=None, prefix="", col
 
     try:
         bg_model = build_static_background(video_path, N_FRAMES_FOR_BG)
-        if bg_model is None: return None
+        if bg_model is None: return np.zeros(GLOBAL_VIDEO_LEN, dtype=np.float32)
         if flip: bg_model = cv2.flip(bg_model, 1)
 
         results = create_all_gait_images(video_path, flip_horizontal=flip, bg_model=bg_model, invert_color_for_debug=color_invert)
         gofi_color, gofi_mask, img_flow, gofi_bg, img_lk, lk_color = results
 
-        if img_flow is None: return None
+        if img_flow is None: return np.zeros(GLOBAL_VIDEO_LEN, dtype=np.float32)
         
         if save_dir:
             os.makedirs(save_dir, exist_ok=True)
@@ -245,8 +246,6 @@ def main():
                 
                 if full_depth_path and os.path.exists(full_depth_path):
                     debug_depth = os.path.join(debug_main, "depth")
-                    debug_rgb = os.path.join(debug_main, "rgb")
-                    
                     vec_depth_norm = extract_video_features(full_depth_path, flip=False, save_dir=debug_depth, prefix="depth")
                     vec_depth_flip = extract_video_features(full_depth_path, flip=True, save_dir=os.path.join(debug_depth, "flip"), prefix="depth", color_invert=True)
                 else:
@@ -266,8 +265,21 @@ def main():
                     vec_rgb_norm = np.zeros(GLOBAL_VIDEO_LEN, dtype=np.float32)
                     vec_rgb_flip = np.zeros(GLOBAL_VIDEO_LEN, dtype=np.float32)
 
-                final_norm = np.concatenate([vec_depth_norm, vec_rgb_norm, vec_imu])
-                final_flip = np.concatenate([vec_depth_flip, vec_rgb_flip, vec_imu])
+                full_ir_path = None
+                if full_depth_path:
+                    ir_vid_dir = os.path.dirname(full_depth_path).replace('depth', 'ir')
+                    full_ir_path = os.path.join(ir_vid_dir, os.path.basename(full_depth_path))
+
+                if full_ir_path and os.path.exists(full_ir_path):
+                    debug_ir = os.path.join(debug_main, "ir")
+                    vec_ir_norm = extract_video_features(full_ir_path, flip=False, save_dir=debug_ir, prefix="ir")
+                    vec_ir_flip = extract_video_features(full_ir_path, flip=True, save_dir=os.path.join(debug_ir, "flip"), prefix="ir", color_invert=True)
+                else:
+                    vec_ir_norm = np.zeros(GLOBAL_VIDEO_LEN, dtype=np.float32)
+                    vec_ir_flip = np.zeros(GLOBAL_VIDEO_LEN, dtype=np.float32)
+
+                final_norm = np.concatenate([vec_depth_norm, vec_rgb_norm, vec_ir_norm, vec_imu])
+                final_flip = np.concatenate([vec_depth_flip, vec_rgb_flip, vec_ir_flip, vec_imu])
                 
                 np.save(npy_path, final_norm)
                 
@@ -275,10 +287,10 @@ def main():
                 np.save(os.path.join(out_run_dir, flip_name), final_flip)
                 
                 processed_count += 1
-                type_msg = "VIDEO+IMU" if full_depth_path else "IMU ONLY"
+                type_msg = "VIDEO(D+RGB+IR)+IMU" if full_depth_path else "IMU ONLY"
                 print(f"  [{run_name}] -> Saved {filename_base} | {type_msg}")
 
-    console.print(Panel.fit(f"[bold green]Processing Completed![/bold green]\nCreated New: {processed_count}\nSkipped (Existing): {skipped_count}"))
+    console.print(Panel.fit(f"[bold green]Processing Completed![/bold green]\nCreated/Overwritten: {processed_count}\nSkipped: {skipped_count}"))
 
 if __name__ == "__main__":
     main()
