@@ -37,7 +37,7 @@ The extracted features are processed through learning architectures tailored to 
 * **Walk/Stairs (Multimodal):** Utilizes an optimized **Random Forest** algorithm. It directly processes the massive 78,658-dimensional fused vector (Depth + RGB + IR + IMU) without dimensionality reduction, achieving **93.86% Rank-1 accuracy** in Closed Set identification.
 * **Slope (IMU-Only):** Utilizes a **Linear Support Vector Machine (SVM)**. The 4,930-dimensional inertial vector is first compressed via PCA (retaining 95% variance), achieving **81.58% Rank-1 accuracy**.
 
-**Open Set Watchlist:** The system transitions from a theoretical classifier to a practical security watchlist, proving its capability to reject unknown impostors with an Equal Error Rate (EER) of **12.16% (RF)** and **21.16% (SVM)** under strict 15-known subject evaluations.
+**Open Set Watchlist:** The system transitions from a theoretical classifier to a practical security watchlist, proving its capability to reject unknown impostors with an Equal Error Rate (EER) of **15.81% (RF)** and **21.16% (SVM)** under strict 15-known subject evaluations.
 
 ---
 
@@ -59,12 +59,12 @@ The codebase is structured sequentially to replicate the entire research pipelin
 #### **IMU Organization & Dataset Auditing**
 * `3_organize_imu.py` & `3b_audit_imu.py`: Parses raw ZIP archives, standardizes inertial data, and audits sequence availability.
 * `4_verify_dataset_completeness.py`: Enforces strict dataset completeness across Video and IMU modalities for all sessions.
-* `5d_check_and_fix_dataset.py`: Aligns the dataset by safely backing up excess acquisitions to ensure a perfectly balanced protocol.
 
 #### **Feature Extraction & Integrity Checks**
 * `5_multimodal_feature_extractor.py`: The core engine fusing GOFI, Trace Maps, and IMU data into unified `.npy` feature vectors.
 * `5b_check_dims.py`: Verifies the structural integrity and dimensionality (78,658 for multimodal) of the processed vectors.
 * `5c_data_integrity_check.py`: Applies cryptographic hashing to guarantee absolute separation (zero leakage) between Train and Test sets.
+* `5d_check_and_fix_dataset.py`: Aligns the dataset by safely backing up excess acquisitions to ensure a perfectly balanced protocol.
 
 #### **Machine Learning: Core Pipeline**
 * `6a_closed_set_rf_train_walk_stairs.py` & `6b_closed_set_svm_train_slope.py`: Handles Grid Search optimization, training, and CMC curve generation for the main proposed architectures.
@@ -73,7 +73,7 @@ The codebase is structured sequentially to replicate the entire research pipelin
 * `7c_open_set_plot_distributions.py`: Generates Kernel Density Estimation (KDE) distributions to visualize genuine vs. impostor score overlap.
 
 #### **Alternative Models & Utils**
-* `alt_models/`: Contains evaluation scripts for benchmark models (CNN, Siamese Networks, HistGradientBoosting, MLP) and the aggregated `scores.txt` log used for paper comparisons.
+* `alt_models/`: Contains evaluation scripts for benchmark models and the aggregated `scores.txt` log used for paper comparisons.
 * `utils/`: Contains core computer vision logic (`gait_processing.py`).
 
 ---
