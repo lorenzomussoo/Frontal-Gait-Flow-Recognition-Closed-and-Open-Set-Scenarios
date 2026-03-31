@@ -1,6 +1,6 @@
 {
     "pca_status": "passthrough",
     "rf__max_depth": null,
-    "rf__min_samples_split": 5,
+    "rf__min_samples_split": 2,
     "rf__n_estimators": 500
 }
