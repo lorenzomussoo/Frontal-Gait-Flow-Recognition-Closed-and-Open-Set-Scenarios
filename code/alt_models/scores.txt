@@ -2,19 +2,19 @@ CLOSED SET: FirstRun & SecondRun = Training, ThirdRun = Testing
 Subjects with incomplete acquisitions were strictly excluded from both the training and testing phases.
 
 RF WALK-STAIRS:
-    accuracy                           0.93       456
-   macro avg       0.95      0.93      0.93       456
-weighted avg       0.95      0.93      0.93       456
+    accuracy                           0.94       456
+   macro avg       0.95      0.94      0.94       456
+weighted avg       0.95      0.94      0.94       456
 
       Closed Set Metrics (CMC)      
 ╭─────────┬────────────────────────╮
 │  Rank   │ Cumulative Match Score │
 ├─────────┼────────────────────────┤
-│ Rank-1  │         93.86%         │
-│ Rank-2  │         97.59%         │
-│ Rank-3  │         98.03%         │
-│ Rank-4  │         98.46%         │
-│ Rank-5  │         99.34%         │
+│ Rank-1  │         94.08%         │
+│ Rank-2  │         97.15%         │
+│ Rank-3  │         98.25%         │
+│ Rank-4  │         98.25%         │
+│ Rank-5  │         98.90%         │
 │ Rank-10 │        100.00%         │
 ╰─────────┴────────────────────────╯
 
@@ -227,8 +227,8 @@ Testing on 180 Genuine Probes and 264 Impostor Probes...
 ╭─────────────────────────┬────────╮
 │ Metric                  │  Value │
 ├─────────────────────────┼────────┤
-│ Equal Error Rate (EER)  │ 12.16% │
-│ Optimal Threshold (EER) │   0.18 │
+│ Equal Error Rate (EER)  │ 15.81% │
+│ Optimal Threshold (EER) │   0.17 │
 ╰─────────────────────────┴────────╯
 
 Gallery (Known): 19 subjects
@@ -239,8 +239,8 @@ Testing on 228 Genuine Probes and 120 Impostor Probes...
 ╭─────────────────────────┬────────╮
 │ Metric                  │  Value │
 ├─────────────────────────┼────────┤
-│ Equal Error Rate (EER)  │ 16.27% │
-│ Optimal Threshold (EER) │   0.18 │
+│ Equal Error Rate (EER)  │ 15.35% │
+│ Optimal Threshold (EER) │   0.16 │
 ╰─────────────────────────┴────────╯
 
 

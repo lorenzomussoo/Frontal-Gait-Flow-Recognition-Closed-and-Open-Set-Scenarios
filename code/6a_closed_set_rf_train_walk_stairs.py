@@ -137,7 +137,7 @@ def train_and_evaluate():
             }
         ]
         
-        search = GridSearchCV(base_pipeline, param_grid, cv=5, n_jobs=-1, verbose=2)
+        search = GridSearchCV(base_pipeline, param_grid, cv=3, n_jobs=-1, verbose=2)
         search.fit(X_train, y_train)
         
         final_model = search.best_estimator_
