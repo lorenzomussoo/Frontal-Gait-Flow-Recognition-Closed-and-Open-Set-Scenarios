@@ -5,33 +5,33 @@
 
      Alessio       0.92      1.00      0.96        24
    Alessio_F       1.00      1.00      1.00        24
-      Andrea       0.89      1.00      0.94        24
-       Artur       0.96      1.00      0.98        24
+      Andrea       0.96      1.00      0.98        24
+       Artur       1.00      1.00      1.00        24
      Camilla       1.00      0.75      0.86        24
-      Chiara       0.96      1.00      0.98        24
-       Diego       0.63      1.00      0.77        24
-     Eduardo       0.77      1.00      0.87        24
+      Chiara       0.80      1.00      0.89        24
+       Diego       0.73      1.00      0.84        24
+     Eduardo       0.83      1.00      0.91        24
     Eleonora       1.00      1.00      1.00        24
-    Federico       0.92      1.00      0.96        24
-   Francesco       1.00      0.92      0.96        24
+    Federico       0.86      1.00      0.92        24
+   Francesco       1.00      0.96      0.98        24
      Jessica       1.00      1.00      1.00        24
-     Lorenzo       1.00      0.67      0.80        24
+     Lorenzo       1.00      0.79      0.88        24
         Luca       1.00      1.00      1.00        24
       Manuel       1.00      1.00      1.00        24
-       Marco       1.00      1.00      1.00        24
-      Matteo       1.00      0.50      0.67        24
+       Marco       1.00      0.83      0.91        24
+      Matteo       1.00      0.62      0.77        24
        Romeo       1.00      0.92      0.96        24
      Valerio       1.00      1.00      1.00        24
 
-    accuracy                           0.93       456
-   macro avg       0.95      0.93      0.93       456
-weighted avg       0.95      0.93      0.93       456
+    accuracy                           0.94       456
+   macro avg       0.95      0.94      0.94       456
+weighted avg       0.95      0.94      0.94       456
 
 
 --- CUMULATIVE MATCH SCORE (CMS) ---
-Rank-1: 93.86%
-Rank-2: 97.59%
-Rank-3: 98.03%
-Rank-4: 98.46%
-Rank-5: 99.34%
+Rank-1: 94.08%
+Rank-2: 97.15%
+Rank-3: 98.25%
+Rank-4: 98.25%
+Rank-5: 98.90%
 Rank-10: 100.00%
