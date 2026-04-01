@@ -34,10 +34,10 @@ For each sensor channel, we compute a **5-dimensional descriptor**:
 ### 3. Classification Architectures & Protocols
 The extracted features are processed through learning architectures tailored to the specific task:
 
-* **Walk/Stairs (Multimodal):** Utilizes an optimized **Random Forest** algorithm. It directly processes the massive 78,658-dimensional fused vector (Depth + RGB + IR + IMU) without dimensionality reduction, achieving **93.86% Rank-1 accuracy** in Closed Set identification.
+* **Walk/Stairs (Multimodal):** Utilizes an optimized **Random Forest** algorithm. It directly processes the massive 78,658-dimensional fused vector (Depth + RGB + IR + IMU) without dimensionality reduction, achieving **94.08% Rank-1 accuracy** in Closed Set identification.
 * **Slope (IMU-Only):** Utilizes a **Linear Support Vector Machine (SVM)**. The 4,930-dimensional inertial vector is first compressed via PCA (retaining 95% variance), achieving **81.58% Rank-1 accuracy**.
 
-**Open Set Watchlist:** The system transitions from a theoretical classifier to a practical security watchlist, proving its capability to reject unknown impostors with an Equal Error Rate (EER) of **15.81% (RF)** and **21.16% (SVM)** under strict 15-known subject evaluations.
+**Open Set Watchlist:** The system transitions from a theoretical classifier to a practical security watchlist, proving its capability to reject unknown impostors with an Equal Error Rate (EER) of **15.35% (RF)** and **21.16% (SVM)** under strict 15-known subject evaluations.
 
 ---
 
