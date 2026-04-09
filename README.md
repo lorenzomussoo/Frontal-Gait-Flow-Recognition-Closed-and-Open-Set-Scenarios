@@ -8,7 +8,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Overview
-This project implements a state-of-the-art biometric system that identifies individuals by their unique gait (walking) patterns. By fusing **Visual Motion Data** (Depth, RGB, and Infrared Optical Flow) with **Kinematic Data** (Wearable IMU Sensors), the system maintains high precision across various actions, including flat ground walking, stairs, and slopes. 
+This project implements a pilot study of a biometric system for identifying individuals based on their unique gait (walking) patterns. By fusing **Visual Motion Data** (Depth, RGB, and Infrared Optical Flow) with **Kinematic Data** (Wearable IMU Sensors), the system maintains high precision across various actions, including flat ground walking, stairs, and slopes. 
 
 The pipeline is rigorously evaluated under both **Closed Set** (Identification) and **Open Set** (Watchlist/Authentication) protocols to ensure real-world forensic applicability.
 
