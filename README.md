@@ -1,4 +1,4 @@
-# Frontal Gait-Flow Recognition
+# Frontal Gait-Flow Recognition 
 **Advanced Multimodal Biometric Identification System using Optical Flow, Infrared, and IMU Kinematics.**
 
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
