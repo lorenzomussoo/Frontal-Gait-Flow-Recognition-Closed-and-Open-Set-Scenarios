@@ -7,6 +7,7 @@ from sklearn.preprocessing import LabelEncoder, StandardScaler
 from sklearn.decomposition import PCA
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import auc
 from joblib import dump, load
 import warnings
 from rich.console import Console
@@ -14,6 +15,8 @@ from rich.panel import Panel
 from rich.progress import track
 from rich.table import Table
 from rich import box
+from scipy.interpolate import interp1d
+from scipy.optimize import brentq
 
 warnings.filterwarnings("ignore")
 console = Console()
@@ -225,22 +228,29 @@ def main():
     thresholds = np.linspace(0.0, 1.0, 200)
     DIR, FAR, FRR = calculate_metrics(probs_gen, y_gen, probs_imp, thresholds)
 
-    eer_index = np.argmin(np.abs(FRR - FAR))
-    eer_threshold = thresholds[eer_index]
-    eer_value = (FRR[eer_index] + FAR[eer_index]) / 2.0
+    def eer_func(t):
+        return interp1d(thresholds, FAR)(t) - interp1d(thresholds, FRR)(t)
+
+    eer_threshold = brentq(eer_func, 0.0, 1.0)
+    eer_value = float(interp1d(thresholds, FAR)(eer_threshold))
+    dir_at_eer = float(interp1d(thresholds, DIR)(eer_threshold))
+
+    sort_idx = np.argsort(FAR)
+    roc_auc = auc(FAR[sort_idx], DIR[sort_idx])
 
     table = Table(title="Open Set Results", box=box.ROUNDED)
     table.add_column("Metric", style="cyan")
     table.add_column("Value", justify="right", style="green")
     table.add_row("Equal Error Rate (EER)", f"{eer_value*100:.2f}%")
-    table.add_row("Optimal Threshold (EER)", f"{eer_threshold:.2f}")
+    table.add_row("Balance Threshold (EER)", f"{eer_threshold:.2f}")
+    table.add_row("ROC AUC", f"{roc_auc:.4f}")
     console.print(table)
 
     suffix = "_19_known" if USE_ALL_VALID_AS_KNOWN else "_15_known"
 
     plt.figure(figsize=(10, 6))
     plt.plot(FAR, DIR, label='Watchlist ROC', color='purple', linewidth=2)
-    plt.plot(FAR[eer_index], DIR[eer_index], 'ro', markersize=8, label=f'EER Point ({eer_value*100:.1f}%)')
+    plt.plot(eer_value, dir_at_eer, 'ro', markersize=8, label=f'EER Point ({eer_value*100:.1f}%)')
     plt.title('Watchlist ROC (Open Set) - SVM Slope')
     plt.xlabel('False Alarm Rate (FAR)')
     plt.ylabel('Detect & Identify Rate (DIR)')
@@ -262,7 +272,8 @@ def main():
         
         f.write("--- MAIN METRICS ---\n")
         f.write(f"EER (Equal Error Rate): {eer_value*100:.2f}%\n")
-        f.write(f"Optimal Threshold for EER: {eer_threshold:.2f}\n\n")
+        f.write(f"Balance Threshold for EER: {eer_threshold:.2f}\n")
+        f.write(f"ROC AUC: {roc_auc:.4f}\n\n")
         
         f.write("--- DETAILED THRESHOLD ANALYSIS (DIR, FAR, FRR) ---\n")
         f.write(f"Note: FRR (False Reject Rate) = 100% - DIR\n\n")
@@ -275,7 +286,7 @@ def main():
             f.write(f"{thresholds[closest_idx]:<12.2f} | {DIR[closest_idx]*100:<18.2f}% | {FAR[closest_idx]*100:<18.2f}% | {FRR[closest_idx]*100:<18.2f}%\n")
         
         f.write("-" * 80 + "\n")
-        f.write(f"{eer_threshold:<12.2f} | {DIR[eer_index]*100:<18.2f}% | {FAR[eer_index]*100:<18.2f}% | {FRR[eer_index]*100:<18.2f}% <-- EER POINT\n\n")
+        f.write(f"{eer_threshold:<12.2f} | {dir_at_eer*100:<18.2f}% | {eer_value*100:<18.2f}% | {eer_value*100:<18.2f}% <-- EER POINT\n\n")
 
         f.write("--- APPLICATION NEEDS (OPERATIONAL POINTS) ---\n")
         for target_far in [0.01, 0.05, 0.10]:

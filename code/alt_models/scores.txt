@@ -221,26 +221,26 @@ RANDOM FOREST WALK-STAIRS:
 ╰────────────────────────────────────────────────╯
 Gallery (Known): 15 subjects
 Impostors (Unknown): 11 subjects
-Loading existing model: rf_walk_stairs_open_set.joblib...
 Testing on 180 Genuine Probes and 264 Impostor Probes...
           Open Set Results          
 ╭─────────────────────────┬────────╮
 │ Metric                  │  Value │
 ├─────────────────────────┼────────┤
-│ Equal Error Rate (EER)  │ 15.81% │
-│ Optimal Threshold (EER) │   0.17 │
+│ Equal Error Rate (EER)  │ 16.40% │
+│ Balance Threshold (EER) │   0.17 │
+│ ROC AUC                 │ 0.8680 │
 ╰─────────────────────────┴────────╯
 
 Gallery (Known): 19 subjects
 Impostors (Unknown): 7 subjects
-Loading existing model: rf_walk_stairs_closed_set.joblib...
 Testing on 228 Genuine Probes and 120 Impostor Probes...
           Open Set Results          
 ╭─────────────────────────┬────────╮
 │ Metric                  │  Value │
 ├─────────────────────────┼────────┤
-│ Equal Error Rate (EER)  │ 15.35% │
-│ Optimal Threshold (EER) │   0.16 │
+│ Equal Error Rate (EER)  │ 14.81% │
+│ Balance Threshold (EER) │   0.16 │
+│ ROC AUC                 │ 0.8813 │
 ╰─────────────────────────┴────────╯
 
 
@@ -250,24 +250,24 @@ SVM SLOPE:
 ╰────────────────────────────────╯
 Gallery (Known): 15 subjects
 Impostors (Unknown): 11 subjects
-Loading existing model: svm_slope_open_set.joblib...
 Testing on 90 Genuine Probes and 132 Impostor Probes...
           Open Set Results          
 ╭─────────────────────────┬────────╮
 │ Metric                  │  Value │
 ├─────────────────────────┼────────┤
-│ Equal Error Rate (EER)  │ 21.16% │
-│ Optimal Threshold (EER) │   0.18 │
+│ Equal Error Rate (EER)  │ 21.17% │
+│ Balance Threshold (EER) │   0.18 │
+│ ROC AUC                 │ 0.7941 │
 ╰─────────────────────────┴────────╯
 
 Gallery (Known): 19 subjects
 Impostors (Unknown): 7 subjects
-Loading existing model: svm_slope_closed_set.joblib...
 Testing on 114 Genuine Probes and 60 Impostor Probes...
           Open Set Results          
 ╭─────────────────────────┬────────╮
 │ Metric                  │  Value │
 ├─────────────────────────┼────────┤
-│ Equal Error Rate (EER)  │ 26.54% │
-│ Optimal Threshold (EER) │   0.17 │
+│ Equal Error Rate (EER)  │ 27.43% │
+│ Balance Threshold (EER) │   0.16 │
+│ ROC AUC                 │ 0.7442 │
 ╰─────────────────────────┴────────╯
