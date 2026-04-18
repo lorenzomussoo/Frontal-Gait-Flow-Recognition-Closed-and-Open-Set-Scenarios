@@ -8,8 +8,9 @@ Genuine Probe Attempts (TG): 90
 Impostor Probe Attempts (TI): 132
 
 --- MAIN METRICS ---
-EER (Equal Error Rate): 21.16%
-Optimal Threshold for EER: 0.18
+EER (Equal Error Rate): 21.17%
+Balance Threshold for EER: 0.18
+ROC AUC: 0.7941
 
 --- DETAILED THRESHOLD ANALYSIS (DIR, FAR, FRR) ---
 Note: FRR (False Reject Rate) = 100% - DIR
@@ -26,7 +27,7 @@ Threshold    | DIR (Detect & ID)    | FAR (False Alarm)    | FRR (False Reject)
 0.80         | 0.00              % | 0.00              % | 100.00            %
 0.90         | 0.00              % | 0.00              % | 100.00            %
 --------------------------------------------------------------------------------
-0.18         | 78.89             % | 21.21             % | 21.11             % <-- EER POINT
+0.18         | 78.83             % | 21.17             % | 21.17             % <-- EER POINT
 
 --- APPLICATION NEEDS (OPERATIONAL POINTS) ---
 - High Security (Max FAR 1.0%): Threshold >= 0.34  -->  DIR = 20.00%, FRR = 80.00%
