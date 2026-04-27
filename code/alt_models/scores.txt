@@ -271,3 +271,302 @@ Testing on 114 Genuine Probes and 60 Impostor Probes...
 │ Balance Threshold (EER) │   0.16 │
 │ ROC AUC                 │ 0.7442 │
 ╰─────────────────────────┴────────╯
+
+
+HGB WALK-STAIRS:
+╭──────────────────────────────────────╮
+│ OPEN SET PROTOCOL: HGB (Walk/Stairs) │
+╰──────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Loading existing model: hgb_walk_stairs_open_set.joblib...
+Testing on 180 Genuine Probes and 264 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 83.89% │
+│ Balance Threshold      │   0.38 │
+╰────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Loading existing model: hgb_walk_stairs_closed_set.joblib...
+Testing on 228 Genuine Probes and 120 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 46.49% │
+│ Balance Threshold      │   0.59 │
+╰────────────────────────┴────────╯
+
+
+HGB SLOPE:
+╭────────────────────────────────╮
+│ OPEN SET PROTOCOL: HGB (Slope) │
+╰────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Performing Grid Search...
+Testing on 90 Genuine Probes and 132 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 34.44% │
+│ Balance Threshold      │   0.50 │
+╰────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training model with saved/default parameters...
+Testing on 114 Genuine Probes and 60 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 40.35% │
+│ Balance Threshold      │   0.50 │
+╰────────────────────────┴────────╯
+
+
+CNN WALK-STAIRS:
+╭─────────────────────────────────────────╮
+│ OPEN SET PROTOCOL: CNN 1D (Walk/Stairs) │
+╰─────────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Training CNN from scratch...
+Model saved to cnn_walk_stairs_open_set.pth!
+Testing on 180 Genuine Probes and 264 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 82.22% │
+│ Balance Threshold      │   0.55 │
+╰────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training CNN from scratch...
+Testing on 228 Genuine Probes and 120 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 85.53% │
+│ Balance Threshold      │   0.51 │
+╰────────────────────────┴────────╯
+
+
+CNN SLOPE:
+╭───────────────────────────────────╮
+│ OPEN SET PROTOCOL: CNN 1D (Slope) │
+╰───────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Training CNN from scratch...
+Model saved to cnn_slope_open_set.pth!
+Testing on 90 Genuine Probes and 132 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 48.89% │
+│ Balance Threshold      │   0.54 │
+╰────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training CNN from scratch...
+Model saved to cnn_slope_closed_set.pth!
+Testing on 114 Genuine Probes and 60 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 50.88% │
+│ Balance Threshold      │   0.42 │
+╰────────────────────────┴────────╯
+
+
+MLP WALK-STAIRS:
+╭──────────────────────────────────────╮
+│ OPEN SET PROTOCOL: MLP (Walk/Stairs) │
+╰──────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Performing Grid Search...
+Testing on 180 Genuine Probes and 264 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 85.00% │
+│ Balance Threshold      │   0.88 │
+╰────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training model with saved/default parameters...
+Testing on 228 Genuine Probes and 120 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 83.77% │
+│ Balance Threshold      │   0.58 │
+╰────────────────────────┴────────╯
+
+
+MLP SLOPE:
+╭────────────────────────────────╮
+│ OPEN SET PROTOCOL: MLP (Slope) │
+╰────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Performing Grid Search...
+Testing on 90 Genuine Probes and 132 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 47.78% │
+│ Balance Threshold      │   0.38 │
+╰────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training model with saved/default parameters...
+Testing on 114 Genuine Probes and 60 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 50.00% │
+│ Balance Threshold      │   0.17 │
+╰────────────────────────┴────────╯
+
+
+Siamese WALK-STAIRS:
+╭──────────────────────────────────────────╮
+│ OPEN SET PROTOCOL: Siamese (Walk/Stairs) │
+╰──────────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Training Siamese Network from scratch...
+Testing on 180 Genuine Probes and 264 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 91.67% │
+│ Balance Threshold      │   0.66 │
+╰────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training Siamese Network from scratch...
+Testing on 228 Genuine Probes and 120 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 88.37% │
+│ Balance Threshold      │   0.61 │
+╰────────────────────────┴────────╯
+
+
+Siamese SLOPE:
+╭────────────────────────────────────╮
+│ OPEN SET PROTOCOL: Siamese (Slope) │
+╰────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Training Siamese Network from scratch...
+Testing on 90 Genuine Probes and 132 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 38.19% │
+│ Balance Threshold      │   0.53 │
+╰────────────────────────┴────────╯
+
+╭────────────────────────────────────╮
+│ OPEN SET PROTOCOL: Siamese (Slope) │
+╰────────────────────────────────────╯
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training Siamese Network from scratch...
+Testing on 114 Genuine Probes and 60 Impostor Probes...
+         Open Set Results          
+╭────────────────────────┬────────╮
+│ Metric                 │  Value │
+├────────────────────────┼────────┤
+│ Equal Error Rate (EER) │ 44.74% │
+│ Balance Threshold      │   0.56 │
+╰────────────────────────┴────────╯
+
+
+RANDOM FOREST SLOPE:
+╭──────────────────────────────────────────╮
+│ OPEN SET PROTOCOL: Random Forest (Slope) │
+╰──────────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Performing Grid Search...
+Testing on 90 Genuine Probes and 132 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 25.56% │
+│ Balance Threshold (EER) │   0.27 │
+│ ROC AUC                 │ 0.7777 │
+╰─────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training model with saved/default parameters...
+Testing on 114 Genuine Probes and 60 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 36.81% │
+│ Balance Threshold (EER) │   0.24 │
+│ ROC AUC                 │ 0.6749 │
+╰─────────────────────────┴────────╯
+
+SVM WALK-STAIRS:
+╭──────────────────────────────────────╮
+│ OPEN SET PROTOCOL: SVM (Walk/Stairs) │
+╰──────────────────────────────────────╯
+Gallery (Known): 15 subjects
+Impostors (Unknown): 11 subjects
+Performing Grid Search...
+Testing on 180 Genuine Probes and 264 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 81.58% │
+│ Balance Threshold (EER) │   0.21 │
+│ ROC AUC                 │ 0.1234 │
+╰─────────────────────────┴────────╯
+
+Gallery (Known): 19 subjects
+Impostors (Unknown): 7 subjects
+Training model with saved/default parameters...
+Testing on 228 Genuine Probes and 120 Impostor Probes...
+          Open Set Results          
+╭─────────────────────────┬────────╮
+│ Metric                  │  Value │
+├─────────────────────────┼────────┤
+│ Equal Error Rate (EER)  │ 79.39% │
+│ Balance Threshold (EER) │   0.17 │
+│ ROC AUC                 │ 0.1571 │
+╰─────────────────────────┴────────╯
