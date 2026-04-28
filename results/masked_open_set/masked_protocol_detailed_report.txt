@@ -1,0 +1,29 @@
+=================================================
+ VIRTUAL IMPOSTOR MASKING PROTOCOL -  REPORT
+=================================================
+- Registered Subjects (Gallery): 19
+- Unknown Subjects (True Impostors): 7
+
+--- RANDOM FOREST (Walk/Stairs) ---
+Total Genuine Attempts (TG): 228 (Used for DIR and FRR)
+Total Impostor Attempts (TI): 348 (Used for FAR)
+   -> Virtual Impostors (Gallery masked): 228
+   -> True Impostors (Strangers): 120
+RESULTS:
+   - Equal Error Rate (EER): 13.97%
+   - EER Balance Threshold: 0.1455
+   - Genuine Reject Rate (GRR): 86.03%
+   - ROC AUC: 0.8961
+
+--------------------------------------------------
+
+--- LINEAR SVM (Slope) ---
+Total Genuine Attempts (TG): 114 (Used for DIR and FRR)
+Total Impostor Attempts (TI): 174 (Used for FAR)
+   -> Virtual Impostors (Gallery masked): 114
+   -> True Impostors (Strangers): 60
+RESULTS:
+   - Equal Error Rate (EER): 24.81%
+   - EER Balance Threshold: 0.1288
+   - Genuine Reject Rate (GRR): 75.19%
+   - ROC AUC: 0.7707
