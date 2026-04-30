@@ -1,7 +1,0 @@
-=== CONFIDENCE ANALYSIS: Support Vector Machine ===
-
-Overall Mean: 0.2751
-Correct Mean: 0.3085
-Incorrect Mean: 0.1274
-Correct Std: 0.1252
-Incorrect Std: 0.0291
