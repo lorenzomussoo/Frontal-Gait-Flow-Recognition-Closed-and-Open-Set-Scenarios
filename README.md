@@ -9,7 +9,7 @@
 
 **A robust Multimodal Gait Recognition System early-fusing synchronized RGB-D-IR Optical Flow and Wearable IMU data. Evaluated on the F-BioGate dataset under strict cross-session Closed Set (Identification) and Open Set (Watchlist) protocols using optimized Machine Learning architectures.**
 
-Developed with the F-BioGate dataset created at **VisionLab** (Department of Computer Science, Sapienza University of Rome) and accepted for publication at the *IEEE/IAPR International Joint Conference on Biometrics (IJCB 2026)*.
+Developed using the F-BioGate dataset created at **VisionLab** (Department of Computer Science, Sapienza University of Rome) and accepted for publication at the *IEEE/IAPR International Joint Conference on Biometrics (IJCB 2026)*.
 
 ---
 
