@@ -1,6 +1,6 @@
 # Frontal Gait-Flow Recognition: The F-BioGate Dataset
 
-[![Conference](https://img.shields.io/badge/IJCB-2026-blue)](https://ijcb2026.ieee-biometrics.org))
+[![Conference](https://img.shields.io/badge/IJCB-2026-blue)](https://ijcb2026.ieee-biometrics.org)
 [![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
 [![OpenCV](https://img.shields.io/badge/OpenCV-4.x-green.svg)](https://opencv.org/)
 [![Scikit-Learn](https://img.shields.io/badge/Scikit--Learn-Latest-orange.svg)](https://scikit-learn.org/)
