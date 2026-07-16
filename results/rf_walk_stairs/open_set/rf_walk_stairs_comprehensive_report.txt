@@ -1,0 +1,58 @@
+==================================================================
+ COMPREHENSIVE OPEN SET REPORT - RANDOM FOREST (WALK/STAIRS)
+==================================================================
+
+1. DATASET COMPOSITION:
+   - Registered Subjects (Gallery): 19
+   - Unknown Subjects (True Impostors): 7
+   - Total Genuine Attempts (TG): 228
+   - Total Impostor Attempts (TI): 348 (228 Virtual + 120 Strangers)
+
+2. GLOBAL METRICS:
+   - Equal Error Rate (EER): 13.99%
+   - EER Balance Threshold: 0.1461
+   - FAR at EER Point: 13.99%
+   - FRR at EER Point: 13.99%
+   - Genuine Reject Rate (GRR) at EER: 86.01%
+   - ROC AUC: 0.8962
+
+3. OPERATIONAL POINTS (HIGH SECURITY):
+   Maximum Allowable FAR: 1.0%
+     -> Threshold Required: >= 0.2184
+     -> Resulting DIR: 54.82%
+     -> Actual FAR: 0.57%
+
+   Maximum Allowable FAR: 5.0%
+     -> Threshold Required: >= 0.1743
+     -> Resulting DIR: 75.88%
+     -> Actual FAR: 4.89%
+
+   Maximum Allowable FAR: 10.0%
+     -> Threshold Required: >= 0.1543
+     -> Resulting DIR: 82.89%
+     -> Actual FAR: 9.20%
+
+4. CONFIDENCE ANALYSIS:
+   - Overall Average Genuine Confidence: 0.2673 (std: 0.1040)
+   - Overall Average Impostor Confidence: 0.1125 (std: 0.0330)
+
+   Average Genuine Confidence per Subject (Gallery 1-19):
+     * Alessio: 0.2440 (based on 12 correct predictions)
+     * Alessio_F: 0.2091 (based on 12 correct predictions)
+     * Andrea: 0.3144 (based on 11 correct predictions)
+     * Artur: 0.3001 (based on 12 correct predictions)
+     * Camilla: 0.2791 (based on 9 correct predictions)
+     * Chiara: 0.2204 (based on 12 correct predictions)
+     * Diego: 0.1853 (based on 12 correct predictions)
+     * Eduardo: 0.4977 (based on 12 correct predictions)
+     * Eleonora: 0.2695 (based on 11 correct predictions)
+     * Federico: 0.2975 (based on 12 correct predictions)
+     * Francesco: 0.1962 (based on 12 correct predictions)
+     * Jessica: 0.3193 (based on 12 correct predictions)
+     * Lorenzo: 0.1593 (based on 11 correct predictions)
+     * Luca: 0.3330 (based on 12 correct predictions)
+     * Manuel: 0.1682 (based on 12 correct predictions)
+     * Marco: 0.2934 (based on 12 correct predictions)
+     * Matteo: 0.1636 (based on 6 correct predictions)
+     * Romeo: 0.2129 (based on 11 correct predictions)
+     * Valerio: 0.3563 (based on 12 correct predictions)

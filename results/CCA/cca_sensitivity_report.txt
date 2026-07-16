@@ -1,0 +1,30 @@
+========================================================================
+ CROSS-SESSION PCA-CCA SENSITIVITY ANALYSIS: VIDEO VS IMU FEATURES 
+========================================================================
+
+1. DATASET CONFIGURATION
+----------------------------------------
+Strict Cross-Session Protocol (NO FLIPS)
+Train Samples (FirstRun, SecondRun): 576
+Test Samples (ThirdRun): 228
+Original Video Dimensionality (Depth+RGB+IR): 73728 features
+Original IMU Dimensionality: 4930 features
+
+2. METHODOLOGY RATIONALE
+----------------------------------------
+To prevent artificial 1.0 correlations due to overfitting and the P >> N
+problem, the dataset was strictly split temporally (Cross-Session).
+PCA and CCA models were fitted strictly on the Training subset (Run 1 & 2).
+The reported Canonical Correlation reflects the out-of-sample projection
+on the unseen Test subset (Run 3), empirically measuring the true semantic gap.
+
+3. RESULTS (OUT-OF-SAMPLE TEST)
+----------------------------------------
+PCA Components  | Video Retained Var.  | IMU Retained Var.    | Test Correlation
+------------------------------------------------------------------------------
+10              |              26.51% |              57.03% |          0.9620
+20              |              34.28% |              67.57% |          0.9465
+30              |              39.34% |              73.80% |          0.9378
+50              |              46.59% |              81.89% |          0.9194
+75              |              53.21% |              87.76% |          0.8937
+100             |              58.46% |              91.51% |          0.9536

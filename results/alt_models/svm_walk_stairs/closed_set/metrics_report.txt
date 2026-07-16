@@ -1,0 +1,37 @@
+=== FINAL REPORT: SVM (WALK/STAIRS) ===
+
+--- CLASSIFICATION REPORT ---
+              precision    recall  f1-score   support
+
+     Alessio       0.78      0.58      0.67        12
+   Alessio_F       0.11      0.08      0.10        12
+      Andrea       0.33      0.08      0.13        12
+       Artur       0.14      0.17      0.15        12
+     Camilla       0.06      0.08      0.07        12
+      Chiara       0.07      0.17      0.10        12
+       Diego       0.00      0.00      0.00        12
+     Eduardo       0.30      1.00      0.46        12
+    Eleonora       0.00      0.00      0.00        12
+    Federico       0.00      0.00      0.00        12
+   Francesco       0.64      0.58      0.61        12
+     Jessica       1.00      0.17      0.29        12
+     Lorenzo       0.33      0.08      0.13        12
+        Luca       0.64      0.58      0.61        12
+      Manuel       0.06      0.08      0.07        12
+       Marco       0.88      0.58      0.70        12
+      Matteo       0.00      0.00      0.00        12
+       Romeo       0.00      0.00      0.00        12
+     Valerio       0.56      0.42      0.48        12
+
+    accuracy                           0.25       228
+   macro avg       0.31      0.25      0.24       228
+weighted avg       0.31      0.25      0.24       228
+
+
+--- CUMULATIVE MATCH SCORE (CMS) ---
+Rank-1: 23.68%
+Rank-2: 46.05%
+Rank-3: 60.96%
+Rank-4: 69.30%
+Rank-5: 76.32%
+Rank-10: 92.54%

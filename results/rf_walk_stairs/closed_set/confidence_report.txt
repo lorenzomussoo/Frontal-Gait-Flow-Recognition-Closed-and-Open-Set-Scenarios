@@ -1,0 +1,7 @@
+=== CONFIDENCE ANALYSIS: Random Forest ===
+
+Overall Mean: 0.2588
+Correct Mean: 0.2673
+Incorrect Mean: 0.1184
+Correct Std: 0.1040
+Incorrect Std: 0.0161

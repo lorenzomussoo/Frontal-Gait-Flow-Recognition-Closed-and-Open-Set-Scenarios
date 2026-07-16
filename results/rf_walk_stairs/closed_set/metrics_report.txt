@@ -1,0 +1,37 @@
+=== FINAL REPORT: RANDOM FOREST (WALK/STAIRS) ===
+
+--- CLASSIFICATION REPORT ---
+              precision    recall  f1-score   support
+
+     Alessio       0.92      1.00      0.96        12
+   Alessio_F       1.00      1.00      1.00        12
+      Andrea       1.00      0.92      0.96        12
+       Artur       1.00      1.00      1.00        12
+     Camilla       1.00      0.75      0.86        12
+      Chiara       0.67      1.00      0.80        12
+       Diego       0.80      1.00      0.89        12
+     Eduardo       0.92      1.00      0.96        12
+    Eleonora       1.00      0.92      0.96        12
+    Federico       0.86      1.00      0.92        12
+   Francesco       1.00      1.00      1.00        12
+     Jessica       1.00      1.00      1.00        12
+     Lorenzo       1.00      0.92      0.96        12
+        Luca       1.00      1.00      1.00        12
+      Manuel       1.00      1.00      1.00        12
+       Marco       1.00      1.00      1.00        12
+      Matteo       1.00      0.50      0.67        12
+       Romeo       1.00      0.92      0.96        12
+     Valerio       1.00      1.00      1.00        12
+
+    accuracy                           0.94       228
+   macro avg       0.96      0.94      0.94       228
+weighted avg       0.96      0.94      0.94       228
+
+
+--- CUMULATIVE MATCH SCORE (CMS) ---
+Rank-1: 94.30%
+Rank-2: 97.37%
+Rank-3: 98.25%
+Rank-4: 98.68%
+Rank-5: 99.12%
+Rank-10: 100.00%

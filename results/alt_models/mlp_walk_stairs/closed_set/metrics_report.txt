@@ -1,0 +1,37 @@
+=== FINAL REPORT: MLP (WALK/STAIRS) ===
+
+--- CLASSIFICATION REPORT ---
+              precision    recall  f1-score   support
+
+     Alessio       0.10      0.25      0.14        12
+   Alessio_F       0.00      0.00      0.00        12
+      Andrea       0.42      0.42      0.42        12
+       Artur       0.00      0.00      0.00        12
+     Camilla       0.25      0.08      0.12        12
+      Chiara       0.00      0.00      0.00        12
+       Diego       0.00      0.00      0.00        12
+     Eduardo       0.41      1.00      0.59        12
+    Eleonora       0.00      0.00      0.00        12
+    Federico       0.21      0.25      0.23        12
+   Francesco       0.67      0.50      0.57        12
+     Jessica       0.80      0.33      0.47        12
+     Lorenzo       0.00      0.00      0.00        12
+        Luca       0.22      0.33      0.27        12
+      Manuel       0.07      0.08      0.08        12
+       Marco       0.19      0.33      0.24        12
+      Matteo       0.00      0.00      0.00        12
+       Romeo       0.00      0.00      0.00        12
+     Valerio       0.00      0.00      0.00        12
+
+    accuracy                           0.19       228
+   macro avg       0.18      0.19      0.16       228
+weighted avg       0.18      0.19      0.16       228
+
+
+--- CUMULATIVE MATCH SCORE (CMS) ---
+Rank-1: 18.86%
+Rank-2: 28.95%
+Rank-3: 39.91%
+Rank-4: 50.44%
+Rank-5: 57.46%
+Rank-10: 82.02%
